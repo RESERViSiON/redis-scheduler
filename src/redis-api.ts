@@ -27,7 +27,7 @@ export class RedisApi {
     }
 
     async peekFromSet(sortedSetKey: string) {
-        const result = await this.redis!.zrange(sortedSetKey, 0, Date.now(), 'BYSCORE', 'LIMIT', 0, 1);
+        const result = await this.redis!.zrangebyscore(sortedSetKey, 0, Date.now(), 'LIMIT', 0, 1);
 
         return result?.length ? result[0] : null;
     }
