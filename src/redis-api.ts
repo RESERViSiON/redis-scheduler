@@ -45,7 +45,7 @@ export class RedisApi {
     }
 
     setString(key: string, value: string) {
-        return this.redis!.set(key, value, 'GET');
+        return this.redis!.set(key, value);
     }
 
     getString(key: string) {
