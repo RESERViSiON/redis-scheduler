@@ -50,3 +50,5 @@ class RedisScheduler<T> {
         await this.api.enqueueToSet(`sortedTasks_${this.topic}`, taskId, timestamp);
     }
 }
+
+export type { RedisScheduler };
