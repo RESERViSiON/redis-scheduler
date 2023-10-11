@@ -2,10 +2,14 @@
   "name": "@reservision/redis-scheduler",
   "version": "0.0.1",
   "description": "a small scheduler using redis sorted sets an rxjs observables",
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "install": "tsc"
   },
   "repository": {
     "type": "git",
