@@ -1,4 +1,4 @@
-import { ConfigType } from "./types";
+import type { ConfigType } from "./types";
 import { RedisApi } from "./redis-api";
 import { Observable, filter, switchMap } from "rxjs";
 

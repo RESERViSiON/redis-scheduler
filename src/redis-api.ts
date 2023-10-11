@@ -1,6 +1,6 @@
 import { Redis } from "ioredis";
 import { MaxRetriesPerRequestError } from "ioredis/built/errors";
-import { ConfigType } from "./types";
+import type { ConfigType } from "./types";
 import { BehaviorSubject, Observable } from "rxjs";
 
 export class RedisApi {
@@ -21,13 +21,13 @@ export class RedisApi {
         this.redis.on('connect', () => this.isConnected$.next(true));
         this.redis.on('close', () => this.isConnected$.next(false));
         this.redis.on('error', e => {
-            if(e instanceof MaxRetriesPerRequestError)
+            if (e instanceof MaxRetriesPerRequestError)
                 throw new Error(e.message);
         });
     }
 
     async peekFromSet(sortedSetKey: string) {
-        const result = await this.redis!.zrange(sortedSetKey,0,Date.now(),'BYSCORE','LIMIT',0,1);
+        const result = await this.redis!.zrange(sortedSetKey, 0, Date.now(), 'BYSCORE', 'LIMIT', 0, 1);
 
         return result?.length ? result[0] : null;
     }
@@ -47,11 +47,11 @@ export class RedisApi {
     setString(key: string, value: string) {
         return this.redis!.set(key, value, 'GET');
     }
-    
+
     getString(key: string) {
         return this.redis!.get(key);
     }
-    
+
     removeString(key: string) {
         return this.redis!.del(key);
     }
