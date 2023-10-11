@@ -1,0 +1,31 @@
+{
+  "name": "@reservision/redis-scheduler",
+  "version": "0.0.1",
+  "description": "a small scheduler using redis sorted sets an rxjs observables",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/RESERViSiON/redis-scheduler.git"
+  },
+  "keywords": [
+    "redis",
+    "rxjs",
+    "scheduler"
+  ],
+  "author": "Steffen Grimm (steffen.grimm@reservision.de)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RESERViSiON/redis-scheduler/issues"
+  },
+  "homepage": "https://github.com/RESERViSiON/redis-scheduler#readme",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "ioredis": "^5.3.2",
+    "rxjs": "^7.8.1"
+  }
+}
