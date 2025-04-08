@@ -27,7 +27,9 @@ class RedisScheduler<T> {
                         const data = await this.api.getString(`${this.topic}_task:${taskId}`);
                         if (data) {
                             try {
-                                observer.next(JSON.parse(data) as T);
+                                const structuredData: T & { __taskId?: number } = JSON.parse(data);
+                                structuredData.__taskId = Number(taskId);
+                                observer.next(structuredData);
                             } catch {
                                 observer.error("json parse error");
                             }
@@ -48,6 +50,16 @@ class RedisScheduler<T> {
         const taskId = await this.api.incrCounter(`scheduleCounter_${this.topic}`);
         await this.api.setString(`${this.topic}_task:${taskId}`, JSON.stringify(data));
         await this.api.enqueueToSet(`sortedTasks_${this.topic}`, taskId, timestamp);
+        return taskId;
+    }
+
+    public async unschedule(taskId: number | string) {
+        await this.api.removeFromSet(`sortedTasks_${this.topic}`, taskId);
+        await this.api.removeString(`${this.topic}_task:${taskId}`);
+    }
+
+    public getApi() {
+        return this.api;
     }
 }
 
